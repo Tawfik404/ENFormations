@@ -2,16 +2,20 @@
 
 namespace Database\Seeders;
 
+use App\Models\Ville;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class StagiaireSeeder extends Seeder
+class VilleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        //
+        Ville::create([
+            
+        ]);
+
     }
 }

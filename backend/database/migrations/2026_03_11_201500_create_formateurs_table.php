@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('formateurs', function (Blueprint $table) {
             $table->id();
+            $table->string("nom");
+            $table->string("prenom");
+            $table->foreignId("division_id")->constrained();
+            $table->foreignId("groupe_id")->constrained();
             $table->timestamps();
         });
     }

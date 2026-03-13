@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Stagiaire;
-use App\Http\Requests\StoreStagiaireRequest;
-use App\Http\Requests\UpdateStagiaireRequest;
+use App\Models\Groupe;
+use App\Http\Requests\StoreGroupeRequest;
+use App\Http\Requests\UpdateGroupeRequest;
 
-class StagiaireController extends Controller
+class GroupeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class StagiaireController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreStagiaireRequest $request)
+    public function store(StoreGroupeRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class StagiaireController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Stagiaire $stagiaire)
+    public function show(Groupe $groupe)
     {
         //
     }
@@ -43,7 +43,7 @@ class StagiaireController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Stagiaire $stagiaire)
+    public function edit(Groupe $groupe)
     {
         //
     }
@@ -51,7 +51,7 @@ class StagiaireController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateStagiaireRequest $request, Stagiaire $stagiaire)
+    public function update(UpdateGroupeRequest $request, Groupe $groupe)
     {
         //
     }
@@ -59,7 +59,7 @@ class StagiaireController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Stagiaire $stagiaire)
+    public function destroy(Groupe $groupe)
     {
         //
     }
