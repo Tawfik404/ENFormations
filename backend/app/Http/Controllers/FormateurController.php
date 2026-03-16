@@ -5,62 +5,44 @@ namespace App\Http\Controllers;
 use App\Models\Formateur;
 use App\Http\Requests\StoreFormateurRequest;
 use App\Http\Requests\UpdateFormateurRequest;
+use Illuminate\Http\JsonResponse;
 
 class FormateurController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        return response()->json(Formateur::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        // Not used in API context
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreFormateurRequest $request)
+    public function store(StoreFormateurRequest $request): JsonResponse
     {
-        //
+        return response()->json(Formateur::create($request->validated()), 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Formateur $formateur)
+    public function show(Formateur $formateur): JsonResponse
     {
-        //
+        return response()->json($formateur);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Formateur $formateur)
     {
-        //
+        // Not used in API context
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateFormateurRequest $request, Formateur $formateur)
+    public function update(UpdateFormateurRequest $request, Formateur $formateur): JsonResponse
     {
-        //
+        $formateur->update($request->validated());
+        return response()->json($formateur->fresh());
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Formateur $formateur)
+    public function destroy(Formateur $formateur): JsonResponse
     {
-        //
+        $formateur->delete();
+        return response()->json(null, 204);
     }
 }

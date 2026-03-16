@@ -13,7 +13,8 @@ class DivisionController extends Controller
      */
     public function index()
     {
-        //
+                return response()->json(Division::all());
+
     }
 
     /**
@@ -29,7 +30,8 @@ class DivisionController extends Controller
      */
     public function store(StoreDivisionRequest $request)
     {
-        //
+                return response()->json(Division::create($request->validated()), 201);
+
     }
 
     /**
@@ -37,7 +39,7 @@ class DivisionController extends Controller
      */
     public function show(Division $division)
     {
-        //
+        
     }
 
     /**

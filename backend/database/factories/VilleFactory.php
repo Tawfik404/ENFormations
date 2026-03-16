@@ -17,7 +17,7 @@ class VilleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nom' => fake('ar_MA')->city(),
         ];
     }
 }

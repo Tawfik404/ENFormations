@@ -5,16 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Groupe;
 use App\Http\Requests\StoreGroupeRequest;
 use App\Http\Requests\UpdateGroupeRequest;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GroupeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        $groupes = Groupe::with([
+            'formateurs',
+            'apprenants',
+            'formations',
+        ])->get();
+
+        return response()->json($groupes);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -27,9 +35,9 @@ class GroupeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreGroupeRequest $request)
+     public function store(StoreGroupeRequest $request): JsonResponse
     {
-        //
+        return response()->json(Groupe::create($request->validated()), 201);
     }
 
     /**

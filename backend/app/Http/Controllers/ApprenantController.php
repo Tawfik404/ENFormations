@@ -5,64 +5,44 @@ namespace App\Http\Controllers;
 use App\Models\Apprenant;
 use App\Http\Requests\StoreApprenantRequest;
 use App\Http\Requests\UpdateApprenantRequest;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Illuminate\Http\JsonResponse;
 
 class ApprenantController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
-        return response()->json(['mess'=>'hii']);
+        return response()->json(Apprenant::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        // Not used in API context
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreApprenantRequest $request)
+    public function store(StoreApprenantRequest $request): JsonResponse
     {
-        //
+        return response()->json(Apprenant::create($request->validated()), 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Apprenant $apprenant)
+    public function show(Apprenant $apprenant): JsonResponse
     {
-        //
+        return response()->json($apprenant);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Apprenant $apprenant)
     {
-        //
+        // Not used in API context
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateApprenantRequest $request, Apprenant $apprenant)
+    public function update(UpdateApprenantRequest $request, Apprenant $apprenant): JsonResponse
     {
-        //
+        $apprenant->update($request->validated());
+        return response()->json($apprenant->fresh());
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Apprenant $apprenant)
+    public function destroy(Apprenant $apprenant): JsonResponse
     {
-        //
+        $apprenant->delete();
+        return response()->json(null, 204);
     }
 }

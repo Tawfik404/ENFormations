@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('salles', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string("batiment");
+            $table->integer("etage");
+            $table->integer("nombre");
         });
     }
 

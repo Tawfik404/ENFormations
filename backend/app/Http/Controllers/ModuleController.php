@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Module;
 use App\Http\Requests\StoreModuleRequest;
 use App\Http\Requests\UpdateModuleRequest;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ModuleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+      public function index(): JsonResponse
     {
-        //
+        return response()->json(Module::all());
     }
 
     /**

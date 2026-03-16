@@ -13,9 +13,12 @@ class VilleSeeder extends Seeder
      */
     public function run(): void
     {
-        Ville::create([
-            
-        ]);
+        {
+        Ville::factory(67)->create();
+         $this->call([
+        VilleSeeder::class,
+    ]);
+    }
 
     }
 }

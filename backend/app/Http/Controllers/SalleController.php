@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Salle;
 use App\Http\Requests\StoreSalleRequest;
 use App\Http\Requests\UpdateSalleRequest;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class SalleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index():JsonResponse
     {
-        //
+                return response()->json(Salle::all());
+
     }
 
     /**
@@ -27,10 +29,11 @@ class SalleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSalleRequest $request)
+    public function store(StoreSalleRequest $request): JsonResponse
     {
-        //
+        return response()->json(Salle::create($request->validated()), 201);
     }
+
 
     /**
      * Display the specified resource.

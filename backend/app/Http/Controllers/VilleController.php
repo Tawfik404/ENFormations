@@ -13,7 +13,8 @@ class VilleController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Ville::all());
+
     }
 
     /**
