@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->date("dateDebut");
             $table->date("dateFin");
-            $table->string("presence");
             $table->foreignId("ville_id")->constrained();
             $table->foreignId("groupe_id")->constrained();
             $table->foreignId("salle_id")->constrained();
