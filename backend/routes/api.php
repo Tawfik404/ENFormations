@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AjouteFormController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\FormateurController;
 use App\Http\Controllers\FormationController;
@@ -24,4 +25,4 @@ Route::apiResources([
     'module' => ModuleController::class,
 ]);
 
-
+Route::apiResource('formation/ajoute', AjouteFormController::class);
