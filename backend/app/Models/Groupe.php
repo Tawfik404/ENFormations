@@ -9,4 +9,6 @@ class Groupe extends Model
 {
     /** @use HasFactory<\Database\Factories\GroupeFactory> */
     use HasFactory;
+    protected $fillable = ['nom'];
+
 }

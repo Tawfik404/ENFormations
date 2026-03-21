@@ -11,7 +11,7 @@ class StoreFormationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StoreFormationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-        ];
+        'dateDebut' => 'required|date',
+        'dateFin'   => 'required|date|after:dateDebut',
+        'ville_id'  => 'required|exists:villes,id',
+        'groupe_id' => 'required|exists:groupes,id',
+        'salle_id'  => 'required|exists:salles,id',
+        'module_id' => 'required|exists:modules,id',        ];
     }
 }

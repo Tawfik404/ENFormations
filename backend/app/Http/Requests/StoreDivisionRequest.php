@@ -11,7 +11,7 @@ class StoreDivisionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ class StoreDivisionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+        'titre' => 'required|string|max:255|unique:divisions,titre',
         ];
     }
 }

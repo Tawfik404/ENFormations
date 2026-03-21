@@ -9,4 +9,6 @@ class Division extends Model
 {
     /** @use HasFactory<\Database\Factories\DivisionFactory> */
     use HasFactory;
+    protected $fillable = ['titre'];
+
 }

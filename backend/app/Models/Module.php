@@ -9,4 +9,7 @@ class Module extends Model
 {
     /** @use HasFactory<\Database\Factories\ModuleFactory> */
     use HasFactory;
+        public $timestamps = false;
+protected $fillable = ['titre'];
+
 }

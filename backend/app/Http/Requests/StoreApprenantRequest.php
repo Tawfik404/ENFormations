@@ -11,7 +11,7 @@ class StoreApprenantRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreApprenantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-        ];
+        'nom'         => 'required|string|max:255',
+        'prenom'      => 'required|string|max:255',
+        'genre'       => 'required|in:M,F',
+        'division_id' => 'required|exists:divisions,id',
+        'groupe_id'   => 'required|exists:groupes,id',        ];
     }
 }

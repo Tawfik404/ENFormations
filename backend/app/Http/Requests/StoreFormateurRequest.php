@@ -11,7 +11,7 @@ class StoreFormateurRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class StoreFormateurRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-        ];
+        'nom'         => 'required|string|max:255',
+        'prenom'      => 'required|string|max:255',
+        'division_id' => 'required|exists:divisions,id',
+        'groupe_id'   => 'required|exists:groupes,id',
+        'module_id'   => 'required|exists:modules,id',
+        'salle_id'    => 'required|exists:salles,id',
+        'ville_id'    => 'required|exists:villes,id',
+        'dateDebut'   => 'required|date',
+        'dateFin'     => 'required|date|after:dateDebut',        ];
     }
 }

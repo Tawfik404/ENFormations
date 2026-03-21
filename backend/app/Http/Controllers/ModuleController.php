@@ -14,7 +14,7 @@ class ModuleController extends Controller
      */
       public function index(): JsonResponse
     {
-        return response()->json(Module::all());
+        return response()->json(Module::get()->all());
     }
 
     /**
@@ -30,7 +30,7 @@ class ModuleController extends Controller
      */
     public function store(StoreModuleRequest $request)
     {
-        //
+        return response()->json(Module::create($request->validated()), 201);
     }
 
     /**
@@ -38,7 +38,7 @@ class ModuleController extends Controller
      */
     public function show(Module $module)
     {
-        //
+         return response()->json($module);
     }
 
     /**
@@ -54,7 +54,8 @@ class ModuleController extends Controller
      */
     public function update(UpdateModuleRequest $request, Module $module)
     {
-        //
+        $module->update($request->validated());
+        return response()->json($module->fresh());
     }
 
     /**

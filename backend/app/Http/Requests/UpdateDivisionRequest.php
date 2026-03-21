@@ -11,7 +11,7 @@ class UpdateDivisionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ class UpdateDivisionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+        'titre' => 'sometimes|string|max:255|unique:divisions,titre,' . $this->division->id,
         ];
     }
 }

@@ -10,5 +10,5 @@ class Ville extends Model
     /** @use HasFactory<\Database\Factories\VilleFactory> */
     use HasFactory;
         protected $fillable = ['nom'];
-
+    
 }

@@ -17,7 +17,9 @@ class ModuleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
-        ];
+        'titre' => fake()->randomElement([
+            'Développement Web', 'Base de données', 'Réseaux',
+            'Algorithmique', 'Systèmes', 'Gestion de projet'
+        ]),        ];
     }
 }

@@ -11,7 +11,7 @@ class StoreSalleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreSalleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-        ];
+        'batiment' => 'required|string|max:255',
+        'etage'    => 'required|integer|min:0|max:20',
+        'nombre'   => 'required|integer|min:1',        ];
     }
 }

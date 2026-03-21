@@ -11,7 +11,7 @@ class UpdateSalleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class UpdateSalleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-        ];
+        'batiment' => 'sometimes|string|max:255',
+        'etage'    => 'sometimes|integer|min:0|max:20',
+        'nombre'   => 'sometimes|integer|min:1',        ];
     }
 }

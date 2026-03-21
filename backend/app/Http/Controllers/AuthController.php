@@ -19,10 +19,13 @@ public function login(Request $request)
 
     $admin = Admin::where('email', $request->email)->first();
 
-    if (!$admin || !Hash::check($request->password, $admin->password)) {
-        return response()->json(['message' => 'mote de pass est incorrect'], 401);
+    if (!$admin) {
+        return response()->json(['message' => 'Email not found'], 404);
     }
 
+    if (!Hash::check($request->password, $admin->password)) {
+        return response()->json(['message' => 'Password is incorrect'], 401);
+    }
 
     return response()->json([
         'message' => 'success.',

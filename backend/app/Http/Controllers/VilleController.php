@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Ville;
 use App\Http\Requests\StoreVilleRequest;
 use App\Http\Requests\UpdateVilleRequest;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class VilleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        return response()->json(Ville::all());
+        return response()->json(Ville::get()->all());
 
     }
 

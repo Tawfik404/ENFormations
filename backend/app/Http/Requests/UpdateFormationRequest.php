@@ -11,7 +11,7 @@ class UpdateFormationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class UpdateFormationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-        ];
+        'dateDebut' => 'sometimes|date',
+        'dateFin'   => 'sometimes|date|after:dateDebut',
+        'ville_id'  => 'sometimes|exists:villes,id',
+        'groupe_id' => 'sometimes|exists:groupes,id',
+        'salle_id'  => 'sometimes|exists:salles,id',
+        'module_id' => 'sometimes|exists:modules,id',        ];
     }
 }

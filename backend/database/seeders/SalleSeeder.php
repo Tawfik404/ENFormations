@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Salle;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,6 @@ class SalleSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+    Salle::factory(10)->create();
     }
 }

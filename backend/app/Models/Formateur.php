@@ -9,4 +9,6 @@ class Formateur extends Model
 {
     /** @use HasFactory<\Database\Factories\FormateurFactory> */
     use HasFactory;
+    protected $fillable = ['nom', 'prenom', 'division_id', 'groupe_id'];
+
 }

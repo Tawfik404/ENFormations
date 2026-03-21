@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Salle extends Model
 {
     /** @use HasFactory<\Database\Factories\SalleFactory> */
+    
     use HasFactory;
+    public $timestamps = false;
+    protected $fillable = ['batiment', 'etage', 'nombre'];
+
 }

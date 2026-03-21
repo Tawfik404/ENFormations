@@ -17,7 +17,8 @@ class SalleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
-        ];
+        'batiment' => fake()->randomElement(['A', 'B', 'C', 'D']),
+        'etage'    => fake()->numberBetween(0, 5),
+        'nombre'   => fake()->numberBetween(20, 50),        ];
     }
 }

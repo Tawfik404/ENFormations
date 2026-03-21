@@ -9,6 +9,7 @@ use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\SalleController;
 use App\Http\Controllers\ApprenantController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\VilleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,6 @@ Route::apiResources([
     'formation' => FormationController::class,
     'salle' => SalleController::class,
     'module' => ModuleController::class,
+    'ville' => VilleController::class,
 ]);
 
-Route::apiResource('formation/ajoute', AjouteFormController::class);

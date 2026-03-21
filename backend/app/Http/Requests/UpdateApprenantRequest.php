@@ -11,7 +11,7 @@ class UpdateApprenantRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateApprenantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-        ];
+        'nom'         => 'sometimes|string|max:255',
+        'prenom'      => 'sometimes|string|max:255',
+        'genre'       => 'sometimes|in:M,F',
+        'division_id' => 'sometimes|exists:divisions,id',
+        'groupe_id'   => 'sometimes|exists:groupes,id',        ];
     }
 }

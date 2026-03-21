@@ -11,7 +11,7 @@ class UpdateAdminRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateAdminRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-        ];
+        'nom'     => 'sometimes|string|max:255',
+        'prenom'  => 'sometimes|string|max:255',
+        'email'   => 'sometimes|email|unique:admins,email,' . $this->admin->id,
+        'password'=> 'sometimes|string|min:8',        ];
     }
 }

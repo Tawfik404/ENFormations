@@ -9,4 +9,5 @@ class Apprenant extends Model
 {
     /** @use HasFactory<\Database\Factories\ApprenantFactory> */
     use HasFactory;
+protected $fillable = ['nom', 'prenom', 'genre', 'division_id', 'groupe_id'];
 }

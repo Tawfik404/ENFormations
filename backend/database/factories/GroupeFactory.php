@@ -17,7 +17,8 @@ class GroupeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
-        ];
+        'nom' => 'Groupe ' . fake()->unique()->randomElement([
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'
+        ]),    ];
     }
 }
