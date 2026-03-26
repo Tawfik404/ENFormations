@@ -80,7 +80,7 @@ export default function ListeStagiaires() {
         borderRadius:8, overflow:'hidden' }}>
         <table style={{ width:'100%', borderCollapse:'collapse' }}>
           <thead><tr style={{ background:'#13171f' }}>
-            {['Nom','Prénom','Formation','Division','Ville','Actions'].map(h => (
+            {['Nom','Prénom','Formation','Division','Ville','sexe','Actions'].map(h => (
               <th key={h} style={{ padding:'10px 16px', textAlign:'left',
                 fontSize:'0.65rem', color:'#6b7591',
                 textTransform:'uppercase', fontWeight:400 }}>{h}</th>
@@ -89,20 +89,21 @@ export default function ListeStagiaires() {
           <tbody>
             {stagiaires.map(s => (
               <tr key={s.id} style={{ borderTop:'1px solid #262d3d' }}>
-                <td style={{padding:'12px 16px',fontSize:'0.72rem',fontWeight:500}}>
+                <td style={{padding:'12px 16px',fontSize:'0.72rem',fontWeight:500,color:'#ffff'}}>
                   {s.nom}</td>
-                <td style={{padding:'12px 16px',fontSize:'0.72rem'}}>
+                <td style={{padding:'12px 16px',fontSize:'0.72rem',color:'#ffff'}}>
                   {s.prenom}</td>
                 <td style={{padding:'12px 16px'}}>
                   <span style={{ fontSize:'0.65rem',padding:'2px 8px',
                     borderRadius:3,background:'rgba(79,255,176,0.1)',color:'#4fffb0'}}>
-                    {s.formation?.titre ?? '-'}
+                    {s.formation?.titre  || stagiaires.formation?.nom || '-'}
                   </span>
                 </td>
-                <td style={{padding:'12px 16px',fontSize:'0.7rem',color:'#6b7591'}}>
+                <td style={{padding:'12px 16px',fontSize:'0.7rem',color:'#ffff'}}>
                   {s.division}</td>
-                <td style={{padding:'12px 16px',fontSize:'0.7rem',color:'#6b7591'}}>
+                <td style={{padding:'12px 16px',fontSize:'0.7rem',color:'#ffff'}}>
                   {s.ville}</td>
+                  <td><span style={{padding:'4px 10px', borderRadius:4,fontSize:'0.7rem', background:s==='feminin'? '#ff6b9d20':'#4fffb020',color:s.sexe==='feminin'? '#ff6b9d':'#4fffb0',fontWeight:500}}>{s.sexe==='feminin' ?'F':'M'}</span></td>
                 <td style={{padding:'12px 16px'}}>
                   <div style={{ display:'flex', gap:6 }}>
                     <button onClick={()=>{setEditId(s.id);setEditData(s);}}

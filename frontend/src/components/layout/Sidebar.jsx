@@ -7,6 +7,12 @@ const NAV = [
   { to:'/stagiaires', label:'Liste Stagiaires',  icon:'👥' },
   { to:'/ajouter',    label:'Ajouter Stagiaire', icon:'➕' },
   { to:'/formations', label:'Formations',         icon:'📚' },
+   { to: '/modules', label: 'Modules', icon: '📖' },      // NOUVEAU
+  { to: '/groupes', label: 'Groupes', icon: '👨‍👩‍👧‍👦' },    // NOUVEAU
+  { to: '/divisions', label: 'Divisions', icon: '🏢' }, // NOUVEAU
+  { to: '/salles', label: 'Salles', icon: '🚪' },       // NOUVEAU
+  { to: '/villes', label: 'Villes', icon: '🏙️' },       // NOUVEAU
+  { to: '/admins', label: 'Admins', icon: '👤' }       // NOUVEAU
 ];
  
 export default function Sidebar({ collapsed, setCollapsed }) {

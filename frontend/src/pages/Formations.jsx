@@ -50,13 +50,13 @@ export default function Formations() {
                   color, marginBottom:2 }}>{f.titre}</div>
                 <div style={{ fontSize:'0.65rem', color:'#6b7591' }}>{f.ville}</div>
               </div>
- 
+
               {/* Date début */}
               <div>
                 <div style={{ fontSize:'0.62rem', color:'#6b7591',
                   textTransform:'uppercase', letterSpacing:'0.06em', marginBottom:2 }}>
                   Début</div>
-                <div style={{ fontSize:'0.7rem' }}>{f.date_debut}</div>
+                <div style={{ fontSize:'0.7rem',color:'#ffff' }}>{f.date_debut.split('T')[0]}</div>
               </div>
  
               {/* Date fin */}
@@ -64,7 +64,7 @@ export default function Formations() {
                 <div style={{ fontSize:'0.62rem', color:'#6b7591',
                   textTransform:'uppercase', letterSpacing:'0.06em', marginBottom:2 }}>
                   Fin</div>
-                <div style={{ fontSize:'0.7rem' }}>{f.date_fin}</div>
+                <div style={{ fontSize:'0.7rem',color:'#ffff' }}>{f.date_fin.split('T')[0]}</div>
               </div>
  
               {/* Stagiaires */}

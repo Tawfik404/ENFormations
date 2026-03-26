@@ -61,7 +61,7 @@ export default function Dashboard() {
         <table style={{ width:'100%', borderCollapse:'collapse' }}>
           <thead>
             <tr style={{ background:'#13171f' }}>
-              {['Nom','Prénom','Formation','Ville'].map(h => (
+              {['Nom','Prénom','Formation','Ville','Sexe'].map(h => (
                 <th key={h} style={{ padding:'9px 16px', textAlign:'left',
                   fontSize:'0.65rem', color:'#6b7591',
                   textTransform:'uppercase', fontWeight:400 }}>{h}</th>
@@ -71,9 +71,9 @@ export default function Dashboard() {
           <tbody>
             {recent.map(s => (
               <tr key={s.id} style={{ borderTop:'1px solid #262d3d' }}>
-                <td style={{ padding:'11px 16px', fontSize:'0.72rem',
+                <td style={{ padding:'11px 16px', fontSize:'0.72rem',color:'#ffff',
                   fontWeight:500 }}>{s.nom}</td>
-                <td style={{ padding:'11px 16px', fontSize:'0.72rem' }}>
+                <td style={{ padding:'11px 16px', fontSize:'0.72rem' ,color:'#ffff'}}>
                   {s.prenom}</td>
                 <td style={{ padding:'11px 16px' }}>
                   <span style={{ fontSize:'0.65rem', padding:'2px 8px',
@@ -83,7 +83,11 @@ export default function Dashboard() {
                   </span>
                 </td>
                 <td style={{ padding:'11px 16px', fontSize:'0.7rem',
-                  color:'#6b7591' }}>{s.ville}</td>
+                  color:'#ffff' }}>{s.ville}</td>
+                  <td><span style={{padding:'4px 10px', borderRadius:4,fontSize:'0.7rem', background:s==='feminin'? '#ff6b9d20':'#4fffb020',color:s.sexe==='feminin'? '#ff6b9d':'#4fffb0',fontWeight:500}}>{s.sexe==='feminin' ?'F':'M'}</span></td>
+
+                  {/* <td style={{ padding:'11px 16px', fontSize:'0.72rem',color:'#ffff',
+                  fontWeight:500 }}>{s.sexe}</td> */}
               </tr>
             ))}
           </tbody>
