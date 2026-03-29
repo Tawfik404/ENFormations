@@ -22,11 +22,16 @@ class StoreFormationRequest extends FormRequest
     public function rules(): array
     {
         return [
-        'dateDebut' => 'required|date',
-        'dateFin'   => 'required|date|after:dateDebut',
-        'ville_id'  => 'required|exists:villes,id',
-        'groupe_id' => 'required|exists:groupes,id',
-        'salle_id'  => 'required|exists:salles,id',
-        'module_id' => 'required|exists:modules,id',        ];
+            'titre'          => 'required|string|max:255',
+            'dateDebut'      => 'required|date',
+            'dateFin'        => 'required|date|after:dateDebut',
+            'ville_id'       => 'sometimes|exists:villes,id',
+            'groupe_id'      => 'sometimes|exists:groupes,id',
+            'salle_id'       => 'sometimes|exists:salles,id',
+            'module_id'      => 'sometimes|exists:modules,id',
+            'salle_batiment' => 'sometimes|required_with:salle_etage,salle_nombre|string|max:255',
+            'salle_etage'    => 'sometimes|required_with:salle_batiment,salle_nombre|integer',
+            'salle_nombre'   => 'sometimes|required_with:salle_batiment,salle_etage|integer',
+        ];
     }
 }

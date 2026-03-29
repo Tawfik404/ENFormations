@@ -10,7 +10,7 @@ export default function SearchBar({ dark }) {
  
   const handleKey = (e) => {
     if (e.key === 'Enter' && q.trim()) {
-      navigate(`/stagiaires?q=${q}`);
+      navigate(`/apprenants?q=${q}`);
     }
   };
  

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { stagiaireService } from '../services/stagiaireService';
+import { apprenantService } from '../services/apprenantService';
 import { useNavigate, useSearchParams } from 'react-router-dom';
  
-export default function ListeStagiaires() {
-  const [stagiaires, setStagiaires] = useState([]);
+export default function ListeApprenants() {
+  const [apprenants, setApprenants] = useState([]);
   const [search, setSearch]         = useState('');
   const [loading, setLoading]       = useState(true);
   const [editId, setEditId]         = useState(null);
@@ -14,25 +14,25 @@ export default function ListeStagiaires() {
   useEffect(() => {
     const q = params.get('q') || '';
     setSearch(q);
-    const fn = q ? stagiaireService.search(q) : stagiaireService.getAll();
-    fn.then(r => setStagiaires(r.data)).finally(() => setLoading(false));
+    const fn = q ? apprenantService.search(q) : apprenantService.getAll();
+    fn.then(r => setApprenants(r.data)).finally(() => setLoading(false));
   }, [params]);
  
   const handleSearch = () => {
     setLoading(true);
-    const fn = search ? stagiaireService.search(search) : stagiaireService.getAll();
-    fn.then(r => setStagiaires(r.data)).finally(() => setLoading(false));
+    const fn = search ? apprenantService.search(search) : apprenantService.getAll();
+    fn.then(r => setApprenants(r.data)).finally(() => setLoading(false));
   };
  
   const handleDelete = (id) => {
-    if (!confirm('Supprimer ce stagiaire ?')) return;
-    stagiaireService.delete(id).then(() =>
-      setStagiaires(p => p.filter(s => s.id !== id)));
+    if (!confirm('Supprimer cet apprenant ?')) return;
+    apprenantService.delete(id).then(() =>
+      setApprenants(p => p.filter(s => s.id !== id)));
   };
  
   const handleSaveEdit = () => {
-    stagiaireService.update(editId, editData).then(r => {
-      setStagiaires(p => p.map(s => s.id === editId ? r.data : s));
+    apprenantService.update(editId, editData).then(r => {
+      setApprenants(p => p.map(s => s.id === editId ? r.data : s));
       setEditId(null);
     });
   };
@@ -45,12 +45,12 @@ export default function ListeStagiaires() {
         alignItems:'flex-end', marginBottom:20 }}>
         <div>
           <h1 style={{ fontFamily:"'DM Serif Display',serif",
-            fontSize:'1.8rem', fontWeight:400 }}>Liste des Stagiaires</h1>
+            fontSize:'1.8rem', fontWeight:400 }}>Liste des Apprenants</h1>
           <p style={{ fontSize:'0.68rem', color:'#6b7591', marginTop:3 }}>
-            {stagiaires.length} stagiaire(s)
+            {apprenants.length} apprenant(s)
           </p>
         </div>
-        <button onClick={() => navigate('/ajouter')}
+        <button onClick={() => navigate('/ajouter-apprenant')}
           style={{ padding:'8px 14px', borderRadius:5, background:'#4fffb0',
             color:'#0c0f14', fontSize:'0.7rem', border:'none', cursor:'pointer',
             fontFamily:"'DM Mono',monospace", fontWeight:500 }}>
@@ -87,7 +87,7 @@ export default function ListeStagiaires() {
             ))}
           </tr></thead>
           <tbody>
-            {stagiaires.map(s => (
+            {apprenants.map(s => (
               <tr key={s.id} style={{ borderTop:'1px solid #262d3d' }}>
                 <td style={{padding:'12px 16px',fontSize:'0.72rem',fontWeight:500,color:'#ffff'}}>
                   {s.nom}</td>
@@ -136,7 +136,7 @@ export default function ListeStagiaires() {
             borderRadius:8, padding:28, width:400 }}>
             <h3 style={{ fontFamily:"'DM Serif Display',serif",
               fontSize:'1.3rem', fontWeight:400, marginBottom:20 }}>
-              Modifier le Stagiaire
+              Modifier l’Apprenant
             </h3>
             {['nom','prenom','division','groupe'].map(k => (
               <div key={k} style={{ marginBottom:12 }}>

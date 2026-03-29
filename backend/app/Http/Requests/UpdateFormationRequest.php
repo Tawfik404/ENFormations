@@ -22,6 +22,7 @@ class UpdateFormationRequest extends FormRequest
     public function rules(): array
     {
         return [
+        'titre'     => 'sometimes|string|max:255',
         'dateDebut' => 'sometimes|date',
         'dateFin'   => 'sometimes|date|after:dateDebut',
         'ville_id'  => 'sometimes|exists:villes,id',

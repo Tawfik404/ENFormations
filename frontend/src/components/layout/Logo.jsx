@@ -15,9 +15,9 @@ export default function Logo({ collapsed, dark }) {
       }}>F</div>
       {!collapsed && (
         <div>
-          <div style={{ fontSize:'0.75rem', fontWeight:500, color:c.text }}>Formation</div>
+          <div style={{ fontSize:'0.75rem', fontWeight:700, color:c.text }}>ENFormations</div>
           <div style={{ fontSize:'0.62rem', color:c.accent, fontStyle:'italic',
-            fontFamily:"'DM Serif Display',serif" }}>Manager</div>
+            fontFamily:"'DM Serif Display',serif" }}>Dashboard</div>
         </div>
       )}
     </div>

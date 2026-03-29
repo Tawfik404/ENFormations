@@ -3,8 +3,8 @@ import { useState } from 'react';
 import Sidebar        from './components/layout/Sidebar';
 import Topbar         from './components/layout/Topbar';
 import Dashboard      from './pages/Dashboard';
-import ListeStagiaires from './pages/ListeStagiaires';
-import AjouterStagiaire from './pages/AjouterStagiaire';
+import ListeApprenants from './pages/ListeApprenants';
+import AjouterApprenant from './pages/AjouterApprenant';
 import Formations     from './pages/Formations';
 import { ThemeContext } from './context/ThemeContext';
 import ListeGroupes from './pages/ListeGroupes';
@@ -44,20 +44,16 @@ export default function App() {
             <Routes>
               <Route path='/'           element={<Navigate to='/dashboard' />} />
               <Route path='/dashboard'  element={<Dashboard />} />
-              <Route path='/stagiaires' element={<ListeStagiaires />} />
-              <Route path='/ajouter'    element={<AjouterStagiaire />} />
+              <Route path='/apprenants' element={<ListeApprenants />} />
+              <Route path='/ajouter-apprenant' element={<AjouterApprenant />} />
               <Route path='/formations' element={<Formations />} />
-              <Route path="/groupes" element={<ListeGroupes />} />      {/* NOUVEAU */}
-              <Route path="/ajouter-groupe" element={<AjouterGroupe />} />      {/* NOUVEAU */}
-              <Route path="/villes" element={<ListeVilles />} />        {/* NOUVEAU */}
-              <Route path="/modules" element={<ListeModules />} />      {/* NOUVEAU */}
-              <Route path="/ajouter-module" element={<AjouterModule />} />      {/* NOUVEAU */}
-              <Route path="/ajouter-ville" element={<AjouterVille />} />      {/* NOUVEAU */}
+              <Route path="/groupes" element={<ListeGroupes />} />
+              <Route path="/ajouter-groupe" element={<AjouterGroupe />} />
+              <Route path="/modules" element={<ListeModules />} />
+              <Route path="/ajouter-module" element={<AjouterModule />} />
               <Route path="/modifier-groupe/:id" element={<ModifierGroupe />} />
               <Route path="/divisions" element={<ListeDivisions />} />
               <Route path="/ajouter-division" element={<AjouterDivision />} /> 
-              <Route path="/salles" element={<ListeSalles/>} /> 
-              <Route path="/ajouter-salle" element={<AjouterSalle />} /> 
 
 
 

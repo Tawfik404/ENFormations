@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import StatCard from '../components/ui/StatCard';
-import { stagiaireService } from '../services/stagiaireService';
+import { apprenantService } from '../services/apprenantService';
 import { formationService  } from '../services/formationService';
 import { useNavigate } from 'react-router-dom';
+import { Users, BookOpen, GraduationCap, ArrowRightCircle } from 'lucide-react';
  
 export default function Dashboard() {
   const [stats, setStats]   = useState({ stagiaires:0, formations:0 });
@@ -10,10 +11,10 @@ export default function Dashboard() {
   const navigate = useNavigate();
  
   useEffect(() => {
-    stagiaireService.getAll().then(r => {
-      const stagiairesArray = Array.isArray(r.data) ? r.data : [];
-      setStats(s => ({ ...s, stagiaires: stagiairesArray.length }));
-      setRecent(stagiairesArray.slice(0, 5));
+    apprenantService.getAll().then(r => {
+      const apprenantsArray = Array.isArray(r.data) ? r.data : [];
+      setStats(s => ({ ...s, stagiaires: apprenantsArray.length }));
+      setRecent(apprenantsArray.slice(0, 5));
     });
     formationService.getAll().then(r => {
       const formationsArray = Array.isArray(r.data) ? r.data : [];
@@ -33,14 +34,15 @@ export default function Dashboard() {
       {/* Stat Cards */}
       <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)',
         gap:14, marginBottom:24 }}>
-        <StatCard label='Total Stagiaires' value={stats.stagiaires}
-          icon='👥' color='#4fffb0'
+        <StatCard label='Total Apprenants' value={stats.stagiaires}
+          icon={<Users color="#ffffff" size={20} />} color='#4fffb0'
           chart={[4,6,5,7,6,stats.stagiaires,stats.stagiaires]} />
         <StatCard label='Total Formations' value={stats.formations}
-          icon='📚' color='#a29bfe'
+          icon={<BookOpen color="#ffffff" size={20} />} color='#a29bfe'
           chart={[2,3,2,4,3,stats.formations,stats.formations]} />
         <StatCard label='Total Formateurs' value={12}
-          icon='🎓' color='#ffd166' chart={[8,10,9,11,10,12,12]} />
+          icon={<GraduationCap color="#ffffff" size={20} />} color='#ffd166'
+          chart={[8,10,9,11,10,12,12]} />
       </div>
  
       {/* Recent Table */}
@@ -50,14 +52,14 @@ export default function Dashboard() {
           display:'flex', justifyContent:'space-between' }}>
           <span style={{ fontSize:'0.7rem', color:'#6b7591',
             textTransform:'uppercase', letterSpacing:'0.08em' }}>
-            Stagiaires récents
+            Apprenants récents
           </span>
-          <button onClick={()=>navigate('/stagiaires')}
+          <button onClick={()=>navigate('/apprenants')}
             style={{ fontSize:'0.68rem', color:'#4fffb0', background:'transparent',
               border:'1px solid rgba(79,255,176,0.2)', padding:'3px 10px',
               borderRadius:4, cursor:'pointer',
-              fontFamily:"'DM Mono',monospace" }}>
-            Voir tout →
+              fontFamily:"'DM Mono',monospace", display:'flex', alignItems:'center', gap:6 }}>
+            Voir tout <ArrowRightCircle size={14} color='#4fffb0' />
           </button>
         </div>
         <table style={{ width:'100%', borderCollapse:'collapse' }}>

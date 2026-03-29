@@ -10,6 +10,7 @@ use App\Http\Controllers\SalleController;
 use App\Http\Controllers\ApprenantController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VilleController;
+use App\Http\Controllers\GroupeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,7 @@ Route::post('login', [AuthController::class,'login']);
 
 Route::apiResources([
     'apprenant' => ApprenantController::class,
+    'groupe' => GroupeController::class,
     'division' => DivisionController::class,
     'formateur' => FormateurController::class,
     'formation' => FormationController::class,

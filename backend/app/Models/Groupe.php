@@ -17,6 +17,11 @@ class Groupe extends Model
         return $this->hasMany(Apprenant::class);
     }
 
+    public function formateurs()
+    {
+        return $this->hasMany(Formateur::class);
+    }
+
     public function formations()
     {
         return $this->hasMany(Formation::class);

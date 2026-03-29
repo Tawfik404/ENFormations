@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Groupe;
 use App\Http\Requests\StoreGroupeRequest;
 use App\Http\Requests\UpdateGroupeRequest;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Illuminate\Http\JsonResponse;
 
 class GroupeController extends Controller
 {
@@ -15,7 +15,6 @@ class GroupeController extends Controller
     public function index(): JsonResponse
     {
         $groupes = Groupe::with([
-            'formateurs',
             'apprenants',
             'formations',
         ])->get();
@@ -37,15 +36,29 @@ class GroupeController extends Controller
      */
      public function store(StoreGroupeRequest $request): JsonResponse
     {
-        return response()->json(Groupe::create($request->validated()), 201);
+        $validated = $request->validated();
+        // Remove apprenants from validation since they're handled by frontend
+        unset($validated['apprenants']);
+
+        $groupe = Groupe::create($validated);
+
+        $groupe->load('apprenants', 'formateurs', 'formations');
+
+        return response()->json($groupe, 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Groupe $groupe)
+    public function show(Groupe $groupe): JsonResponse
     {
-        //
+        $groupe->load([
+            'apprenants',
+            'formateurs',
+            'formations',
+        ]);
+
+        return response()->json($groupe);
     }
 
     /**
@@ -59,16 +72,26 @@ class GroupeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateGroupeRequest $request, Groupe $groupe)
+    public function update(UpdateGroupeRequest $request, Groupe $groupe): JsonResponse
     {
-        //
+        $validated = $request->validated();
+        // Remove apprenants from validation since they're handled by frontend
+        unset($validated['apprenants']);
+
+        $groupe->update($validated);
+
+        $groupe->load('apprenants', 'formateurs', 'formations');
+
+        return response()->json($groupe);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Groupe $groupe)
+    public function destroy(Groupe $groupe): JsonResponse
     {
-        //
+        $groupe->delete();
+
+        return response()->json(null, 204);
     }
 }

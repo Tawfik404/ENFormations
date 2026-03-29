@@ -22,7 +22,10 @@ class UpdateGroupeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nom' => 'sometimes|required|string|max:255',
+            'objectif' => 'nullable|string',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
         ];
     }
 }

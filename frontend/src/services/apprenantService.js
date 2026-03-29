@@ -1,6 +1,6 @@
 import api from './api';
  
-export const stagiaireService = {
+export const apprenantService = {
   getAll:  ()           => api.get('/apprenant'),
   getById: (id)         => api.get(`/apprenant/${id}`),
   search:  (q)          => api.get(`/apprenant/search?q=${q}`),
