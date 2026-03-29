@@ -12,7 +12,7 @@ export default function ListeVilles() {
   
   const loadVilles = () => {
     villeService.getAll()
-      .then(r => setVilles(r.data.data))
+      .then(r => setVilles(r.data))
       .catch(e => console.error(e));
   };
   

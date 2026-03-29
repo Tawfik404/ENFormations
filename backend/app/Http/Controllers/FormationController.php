@@ -11,7 +11,7 @@ class FormationController extends Controller
 {
     public function index(): JsonResponse
     {
-        return response()->json(Formation::all());
+        return response()->json(Formation::with(['ville', 'groupe', 'salle', 'module'])->get());
     }
 
     public function create()

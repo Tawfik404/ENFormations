@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('formations', function (Blueprint $table) {
             $table->id();
+            $table->string("titre");
             $table->date("dateDebut");
             $table->date("dateFin");
             $table->foreignId("ville_id")->constrained();

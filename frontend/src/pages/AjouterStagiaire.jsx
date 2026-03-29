@@ -115,7 +115,22 @@ export default function AjouterStagiaire() {
   const navigate = useNavigate();
  
   useEffect(() => {
-    formationService.getAll().then(r => setFormations(r.data.data));
+    formationService.getAll()
+      .then(r => {
+        // Handle the response safely
+        if (r && r.data && r.data.data) {
+          setFormations(r.data.data);
+        } else if (r && Array.isArray(r)) {
+          setFormations(r);
+        } else {
+          console.error('Unexpected API response structure:', r);
+          setFormations([]);
+        }
+      })
+      .catch(err => {
+        console.error('Error fetching formations:', err);
+        setFormations([]);
+      });
   }, []);
  
   const handleSubmit = () => {
@@ -211,7 +226,7 @@ export default function AjouterStagiaire() {
             <option value='react'>react</option>
             <option value='css'>css</option>
 
-            {formations.map(f => (
+            {Array.isArray(formations) && formations.map(f => (
               <option key={f.id} value={f.id}>{f.titre}</option>
             ))}
           </select>

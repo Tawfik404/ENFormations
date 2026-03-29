@@ -9,7 +9,7 @@ export default function Formations() {
  
   useEffect(() => {
     formationService.getAll()
-      .then(r => setFormations(r.data.data))
+      .then(r => setFormations(r.data))
       .finally(() => setLoading(false));
   }, []);
  
@@ -48,7 +48,12 @@ export default function Formations() {
               <div>
                 <div style={{ fontSize:'0.75rem', fontWeight:500,
                   color, marginBottom:2 }}>{f.titre}</div>
-                <div style={{ fontSize:'0.65rem', color:'#6b7591' }}>{f.ville}</div>
+                <div style={{ fontSize:'0.65rem', color:'#6b7591' }}>
+                  {f.ville?.nom || f.ville || '-'}
+                  {f.groupe?.nom ? ` · ${f.groupe.nom}` : ''}
+                  {f.salle?.nom ? ` · ${f.salle.nom}` : ''}
+                  {f.module?.nom ? ` · ${f.module.nom}` : ''}
+                </div>
               </div>
 
               {/* Date début */}
@@ -56,7 +61,9 @@ export default function Formations() {
                 <div style={{ fontSize:'0.62rem', color:'#6b7591',
                   textTransform:'uppercase', letterSpacing:'0.06em', marginBottom:2 }}>
                   Début</div>
-                <div style={{ fontSize:'0.7rem',color:'#ffff' }}>{f.date_debut.split('T')[0]}</div>
+                <div style={{ fontSize:'0.7rem',color:'#ffff' }}>
+                  {((f.date_debut || f.dateDebut || '') + '').split('T')[0] || '-'}
+                </div>
               </div>
  
               {/* Date fin */}
@@ -64,7 +71,9 @@ export default function Formations() {
                 <div style={{ fontSize:'0.62rem', color:'#6b7591',
                   textTransform:'uppercase', letterSpacing:'0.06em', marginBottom:2 }}>
                   Fin</div>
-                <div style={{ fontSize:'0.7rem',color:'#ffff' }}>{f.date_fin.split('T')[0]}</div>
+                <div style={{ fontSize:'0.7rem',color:'#ffff' }}>
+                  {((f.date_fin || f.dateFin || '') + '').split('T')[0] || '-'}
+                </div>
               </div>
  
               {/* Stagiaires */}

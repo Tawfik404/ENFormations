@@ -11,7 +11,21 @@ class ApprenantController extends Controller
 {
     public function index(): JsonResponse
     {
-        return response()->json(Apprenant::all());
+        $apprenants = Apprenant::with(['division', 'groupe.formation.ville', 'groupe', 'formation', 'ville'])
+            ->get()
+            ->map(function ($apprenant) {
+                $formation = $apprenant->formation ?? $apprenant->groupe?->formation;
+                $ville = $apprenant->ville ?? $formation?->ville;
+
+                return array_merge($apprenant->toArray(), [
+                    'division' => $apprenant->division?->titre ?? $apprenant->division,
+                    'groupe' => $apprenant->groupe?->nom ?? $apprenant->groupe,
+                    'formation' => $formation ? ['id' => $formation->id, 'titre' => $formation->titre] : null,
+                    'ville' => $ville ? ['id' => $ville->id, 'nom' => $ville->nom] : null,
+                ]);
+            });
+
+        return response()->json($apprenants);
     }
 
     public function create()

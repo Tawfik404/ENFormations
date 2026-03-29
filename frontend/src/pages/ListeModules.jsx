@@ -12,7 +12,7 @@ export default function ListeModules() {
   
   const loadModules = () => {
     moduleService.getAll()
-      .then(r => setModules(r.data.data))
+      .then(r => setModules(r.data))
       .catch(e => console.error(e));
   };
   

@@ -1,9 +1,9 @@
 import api from './api';
 
 export const divisionService = {
-  getAll: () => api.get('/divisions'),
-  getById: (id) => api.get(`/divisions/${id}`),
-  create: (data) => api.post('/divisions', data),
-  update: (id, data) => api.put(`/divisions/${id}`, data),
-  delete: (id) => api.delete(`/divisions/${id}`)
+  getAll: () => api.get('/division'),
+  getById: (id) => api.get(`/division/${id}`),
+  create: (data) => api.post('/division', data),
+  update: (id, data) => api.put(`/division/${id}`, data),
+  delete: (id) => api.delete(`/division/${id}`)
 };

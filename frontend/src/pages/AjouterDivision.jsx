@@ -13,7 +13,7 @@ export default function AjouterDivision() {
       return;
     }
 
-divisionService.create({ nom: titre })
+divisionService.create({ titre: titre })
       .then(() => navigate('/divisions'))
       .catch(() => setError('Erreur lors de la création'));
   };

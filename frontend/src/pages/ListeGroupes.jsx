@@ -12,7 +12,7 @@ export default function ListeGroupes() {
   
   const loadGroupes = () => {
     groupeService.getAll()
-      .then(r => setGroupes(r.data.data))
+      .then(r => setGroupes(r.data))
       .catch(e => console.error(e));
   };
   

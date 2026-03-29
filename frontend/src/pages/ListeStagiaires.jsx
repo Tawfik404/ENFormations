@@ -15,13 +15,13 @@ export default function ListeStagiaires() {
     const q = params.get('q') || '';
     setSearch(q);
     const fn = q ? stagiaireService.search(q) : stagiaireService.getAll();
-    fn.then(r => setStagiaires(r.data.data)).finally(() => setLoading(false));
+    fn.then(r => setStagiaires(r.data)).finally(() => setLoading(false));
   }, [params]);
  
   const handleSearch = () => {
     setLoading(true);
     const fn = search ? stagiaireService.search(search) : stagiaireService.getAll();
-    fn.then(r => setStagiaires(r.data.data)).finally(() => setLoading(false));
+    fn.then(r => setStagiaires(r.data)).finally(() => setLoading(false));
   };
  
   const handleDelete = (id) => {
@@ -32,7 +32,7 @@ export default function ListeStagiaires() {
  
   const handleSaveEdit = () => {
     stagiaireService.update(editId, editData).then(r => {
-      setStagiaires(p => p.map(s => s.id === editId ? r.data.data : s));
+      setStagiaires(p => p.map(s => s.id === editId ? r.data : s));
       setEditId(null);
     });
   };
@@ -80,7 +80,7 @@ export default function ListeStagiaires() {
         borderRadius:8, overflow:'hidden' }}>
         <table style={{ width:'100%', borderCollapse:'collapse' }}>
           <thead><tr style={{ background:'#13171f' }}>
-            {['Nom','Prénom','Formation','Division','Ville','sexe','Actions'].map(h => (
+            {['Nom','Prénom','Formation','Division','Groupe','sexe','Actions'].map(h => (
               <th key={h} style={{ padding:'10px 16px', textAlign:'left',
                 fontSize:'0.65rem', color:'#6b7591',
                 textTransform:'uppercase', fontWeight:400 }}>{h}</th>
@@ -96,14 +96,15 @@ export default function ListeStagiaires() {
                 <td style={{padding:'12px 16px'}}>
                   <span style={{ fontSize:'0.65rem',padding:'2px 8px',
                     borderRadius:3,background:'rgba(79,255,176,0.1)',color:'#4fffb0'}}>
-                    {s.formation?.titre  || stagiaires.formation?.nom || '-'}
+                    {s.formation?.titre || s.groupe?.formation?.titre || '-'}
                   </span>
                 </td>
                 <td style={{padding:'12px 16px',fontSize:'0.7rem',color:'#ffff'}}>
-                  {s.division}</td>
+                  {s.division?.titre || s.division?.nom || s.division || '-'}</td>
                 <td style={{padding:'12px 16px',fontSize:'0.7rem',color:'#ffff'}}>
-                  {s.ville}</td>
-                  <td><span style={{padding:'4px 10px', borderRadius:4,fontSize:'0.7rem', background:s==='feminin'? '#ff6b9d20':'#4fffb020',color:s.sexe==='feminin'? '#ff6b9d':'#4fffb0',fontWeight:500}}>{s.sexe==='feminin' ?'F':'M'}</span></td>
+                  {s.groupe?.nom || s.groupe || '-'}
+                </td>
+                  <td><span style={{padding:'4px 10px', borderRadius:4,fontSize:'0.7rem', background:(s.genre || s.sexe)==='F'||(s.genre || s.sexe)==='feminin'? '#ff6b9d20':'#4fffb020',color:(s.genre || s.sexe)==='F'||(s.genre || s.sexe)==='feminin'? '#ff6b9d':'#4fffb0',fontWeight:500}}>{(s.genre || s.sexe)==='F'||(s.genre || s.sexe)==='feminin' ? 'F' : 'M'}</span></td>
                 <td style={{padding:'12px 16px'}}>
                   <div style={{ display:'flex', gap:6 }}>
                     <button onClick={()=>{setEditId(s.id);setEditData(s);}}
@@ -137,7 +138,7 @@ export default function ListeStagiaires() {
               fontSize:'1.3rem', fontWeight:400, marginBottom:20 }}>
               Modifier le Stagiaire
             </h3>
-            {['nom','prenom','division','ville'].map(k => (
+            {['nom','prenom','division','groupe'].map(k => (
               <div key={k} style={{ marginBottom:12 }}>
                 <label style={{ display:'block', fontSize:'0.65rem',
                   color:'#6b7591', textTransform:'uppercase',

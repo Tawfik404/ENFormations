@@ -11,4 +11,24 @@ class Formation extends Model
     use HasFactory;
     protected $fillable = ['dateDebut', 'dateFin', 'presence', 'ville_id', 'groupe_id', 'salle_id', 'module_id'];
 
+    public function ville()
+    {
+        return $this->belongsTo(Ville::class);
+    }
+
+    public function groupe()
+    {
+        return $this->belongsTo(Groupe::class);
+    }
+
+    public function salle()
+    {
+        return $this->belongsTo(Salle::class);
+    }
+
+    public function module()
+    {
+        return $this->belongsTo(Module::class);
+    }
+
 }

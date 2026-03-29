@@ -23,7 +23,8 @@ class FormationFactory extends Factory
             $dateDebut = fake()->dateTimeBetween('-1 year', 'now');
     $dateFin   = fake()->dateTimeBetween($dateDebut, '+1 year');
         return [
-            'dateDebut' => $dateDebut,
+        'titre' => fake()->words(2,true),
+        'dateDebut' => $dateDebut,
         'dateFin'   => $dateFin,
         'ville_id'  => Ville::inRandomOrder()->first()->id,
         'groupe_id' => Groupe::inRandomOrder()->first()->id,

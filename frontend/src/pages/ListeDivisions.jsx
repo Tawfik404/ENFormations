@@ -12,7 +12,7 @@ export default function ListeDivisions() {
 
   const loadDivisions = () => {
     divisionService.getAll()
-      .then(r => setDivisions(r.data.data))
+      .then(r => setDivisions(r.data))
       .catch(e => console.error(e));
   };
 

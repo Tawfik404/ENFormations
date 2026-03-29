@@ -11,11 +11,13 @@ export default function Dashboard() {
  
   useEffect(() => {
     stagiaireService.getAll().then(r => {
-      setStats(s => ({ ...s, stagiaires: r.data.total }));
-      setRecent(r.data.data.slice(0,5));
+      const stagiairesArray = Array.isArray(r.data) ? r.data : [];
+      setStats(s => ({ ...s, stagiaires: stagiairesArray.length }));
+      setRecent(stagiairesArray.slice(0, 5));
     });
     formationService.getAll().then(r => {
-      setStats(s => ({ ...s, formations: r.data.data.length }));
+      const formationsArray = Array.isArray(r.data) ? r.data : [];
+      setStats(s => ({ ...s, formations: formationsArray.length }));
     });
   }, []);
  
@@ -61,7 +63,7 @@ export default function Dashboard() {
         <table style={{ width:'100%', borderCollapse:'collapse' }}>
           <thead>
             <tr style={{ background:'#13171f' }}>
-              {['Nom','Prénom','Formation','Ville','Sexe'].map(h => (
+              {['Nom','Prénom','Formation','Groupe','Sexe'].map(h => (
                 <th key={h} style={{ padding:'9px 16px', textAlign:'left',
                   fontSize:'0.65rem', color:'#6b7591',
                   textTransform:'uppercase', fontWeight:400 }}>{h}</th>
@@ -79,12 +81,14 @@ export default function Dashboard() {
                   <span style={{ fontSize:'0.65rem', padding:'2px 8px',
                     borderRadius:3, background:'rgba(79,255,176,0.1)',
                     color:'#4fffb0' }}>
-                    {s.formation?.titre ?? '-'}
+                    {s.formation?.titre || s.groupe?.formation?.titre || s.formation || '-'}
                   </span>
                 </td>
                 <td style={{ padding:'11px 16px', fontSize:'0.7rem',
-                  color:'#ffff' }}>{s.ville}</td>
-                  <td><span style={{padding:'4px 10px', borderRadius:4,fontSize:'0.7rem', background:s==='feminin'? '#ff6b9d20':'#4fffb020',color:s.sexe==='feminin'? '#ff6b9d':'#4fffb0',fontWeight:500}}>{s.sexe==='feminin' ?'F':'M'}</span></td>
+                  color:'#ffff' }}>
+                  {s.groupe?.nom || s.groupe || '-'}
+                </td>
+                  <td><span style={{padding:'4px 10px', borderRadius:4,fontSize:'0.7rem', background:(s.genre || s.sexe)==='F'||(s.genre || s.sexe)==='feminin'? '#ff6b9d20':'#4fffb020',color:(s.genre || s.sexe)==='F'||(s.genre || s.sexe)==='feminin'? '#ff6b9d':'#4fffb0',fontWeight:500}}>{(s.genre || s.sexe)==='F'||(s.genre || s.sexe)==='feminin' ? 'F' : 'M'}</span></td>
 
                   {/* <td style={{ padding:'11px 16px', fontSize:'0.72rem',color:'#ffff',
                   fontWeight:500 }}>{s.sexe}</td> */}

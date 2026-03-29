@@ -12,7 +12,7 @@ export default function ListeSalles() {
 
   const loadSalles = () => {
     salleService.getAll()
-      .then(r => setSalles(r.data.data))
+      .then(r => setSalles(r.data))
       .catch(e => console.error(e));
   };
 
